@@ -1,0 +1,31 @@
+# docker
+Dockerfile
+compose.yml
+.dockerignore
+
+# folders
+node_modules
+.github
+.husky
+.next
+.turbo
+.vercel
+
+# production
+build
+dist
+logs
+*.tsbuildinfo
+
+# testing
+coverage
+.nyc_output
+
+# misc
+eslint.config.mjs
+test
+.gitignore
+.prettierrc
+.prettierignore
+*.log
+*.md

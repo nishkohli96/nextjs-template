@@ -1,0 +1,8 @@
+services:
+  next-client:
+    image: docker-username/next-v15-template
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '3000:3000'
