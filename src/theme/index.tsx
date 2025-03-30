@@ -8,10 +8,10 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { PaletteMode, ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, type PaletteMode } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import CssBaseline from '@mui/material/CssBaseline';
-import { LayoutProps } from '@/types';
+import { type LayoutProps } from '@/types';
 import { getTheme } from './theme';
 
 interface ThemeContextProps {
@@ -21,7 +21,7 @@ interface ThemeContextProps {
 
 const ThemeContext = createContext<ThemeContextProps>({
   currentTheme: 'light',
-  toggleTheme: () => {}
+  toggleTheme: () => { /* no-op */ },
 });
 
 export const useThemeContext = () => useContext(ThemeContext);
