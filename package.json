@@ -5,13 +5,16 @@
   "author": "Nishant Kohli",
   "private": true,
   "scripts": {
+    "set-up": "sh setup.sh",
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "prod": "yarn build && yarn start",
+    "prod": "pnpm build && pnpm start",
     "lint": "next lint --fix",
     "lint:check": "next lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check-updates": "ncu --format group -u",
+    "install-updates": "pnpm check-updates && pnpm install"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -48,6 +51,7 @@
       "eslint --fix"
     ]
   },
+  "packageManager": "pnpm@10.8.1",
   "keywords": [
     "nextjs",
     "template",
