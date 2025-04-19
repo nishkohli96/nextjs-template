@@ -16,7 +16,7 @@ fi
 
 # Check for npm-check-updates
 if ! command -v npm-check-updates &> /dev/null; then
-  echo "🚀 npm-check-updates not found. Installing..."
+  echo "📦 npm-check-updates not found. Installing..."
   npm install -g npm-check-updates
 else
   echo "✅ npm-check-updates is already installed."

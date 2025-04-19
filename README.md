@@ -1,24 +1,29 @@
 # Next App
 
-This is a [Next.js](https://nextjs.org) v19 project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and has the following features preconfigured:
+This is a [Next.js](https://nextjs.org) **v15** project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and has the following features preconfigured:
 
 - [Typescript](https://www.typescriptlang.org/) integration
 - Preconfigured [eslint](https://eslint.org/)
-- [Material-UI](https://mui.com/) setup with theming
+- [Material-UI](https://mui.com/) setup with switching between light and dark mode.
 - [Tailwind CSS](https://tailwindcss.com/)
+- Containerize the application using Docker.
 
 ## Getting Started
+
+```bash
+pnpm set-up
+```
+
+The above command executes the `setup.sh` script to set up the project by:
+
+- Ensuring [pnpm](https://pnpm.io/) and [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) are installed globally.
+- Installing all project dependencies.
+- Building the app for the first time.
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -27,15 +32,30 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Features
-
-- Integration with [material-ui](https://mui.com/material-ui/) **v7** and [tailwind-css](https://tailwindcss.com/).
-- Switch between light and dark theme.
-- Containerize the application using Docker.
-
 ## Update Dependencies
 
 [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) is an excellent tool for detecting the latest versions of dependencies and updating them in your `package.json`. It simplifies the process of keeping your project up to date with the latest package versions.
+
+### Installation
+
+Install globally to use **npm-check-updates**
+
+```
+npm install -g npm-check-updates
+```
+
+To update packages while also understanding the impact of the changes, run:
+
+```bash
+ncu --format group -u
+```
+This groups updates by type (**major**, **minor**, **patch**), making it easier to assess potential risks before upgrading.
+
+Update all dependencies && Check build status after updating all packages:
+
+```
+pnpm install-updates && pnpm build
+```
 
 ## Learn More
 
