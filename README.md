@@ -5,8 +5,8 @@ This is a [Next.js](https://nextjs.org) **v15** project bootstrapped with [`crea
 - [Typescript](https://www.typescriptlang.org/) integration
 - Preconfigured [eslint](https://eslint.org/)
 - [Material-UI](https://mui.com/) setup with switching between light and dark mode.
-- [Tailwind CSS](https://tailwindcss.com/)
-- Containerize the application using Docker.
+- [Tailwind CSS](https://tailwindcss.com/) **v4**
+- Containerize the application using Docker
 
 ## Getting Started
 
@@ -17,10 +17,10 @@ pnpm set-up
 The above command executes the `setup.sh` script to set up the project by:
 
 - Ensuring [pnpm](https://pnpm.io/) and [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) are installed globally.
-- Installing all project dependencies.
+- Installing all dependencies.
 - Building the app for the first time.
 
-First, run the development server:
+You can now start the development server by running:
 
 ```bash
 pnpm dev
@@ -38,22 +38,18 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ### Installation
 
-Install globally to use **npm-check-updates**
-
-```
-npm install -g npm-check-updates
-```
+The `setup.sh` script globally installs **npm-check-updates**.
 
 To update packages while also understanding the impact of the changes, run:
 
 ```bash
-ncu --format group -u
+pnpm check-updates
 ```
 This groups updates by type (**major**, **minor**, **patch**), making it easier to assess potential risks before upgrading.
 
-Update all dependencies && Check build status after updating all packages:
+Update all dependencies && check build status after updating all packages:
 
-```
+```bash
 pnpm install-updates && pnpm build
 ```
 
