@@ -29,3 +29,4 @@ test
 .prettierignore
 *.log
 *.md
+README.md

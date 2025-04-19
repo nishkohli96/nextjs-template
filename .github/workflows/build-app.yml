@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.13.1]
+        node-version: [22.14.0]
         os: [ubuntu-latest]
 
     steps:
@@ -19,10 +19,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+
+      - name: Install pnpm v10.8.1 globally
+        run: npm i -g pnpm@10.8.1
 
       - name: Install dependencies
-        run: yarn
+        run: pnpm install
 
       - name: Build nextjs-app
-        run: yarn build
+        run: pnpm build
