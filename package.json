@@ -1,7 +1,7 @@
 {
   "name": "next-v15-template",
-  "version": "1.0.1",
-  "description": "Next.js v15 template with Material-UI.",
+  "version": "1.0.2",
+  "description": "Next.js v15 template with Material-UI, docker, and Tailwind CSS",
   "author": "Nishant Kohli",
   "private": true,
   "scripts": {
@@ -47,5 +47,13 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
-  }
+  },
+  "keywords": [
+    "nextjs",
+    "template",
+    "material-ui",
+    "tailwindcss",
+    "docker"
+  ],
+  "license": "MIT"
 }
