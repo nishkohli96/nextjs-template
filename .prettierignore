@@ -15,6 +15,7 @@ tsconfig.json
 tsconfig.build.json
 turbo.json
 yarn.lock
+pnpm-lock.yaml
 
 eslint.config.mjs
 .gitignore

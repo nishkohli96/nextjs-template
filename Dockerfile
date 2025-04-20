@@ -3,16 +3,17 @@ FROM node:23-alpine3.20 AS builder
 # Set working directory in the container
 WORKDIR /app
 
-COPY --chown=node:node package.json tsconfig.json yarn.lock ./
+COPY --chown=node:node package.json tsconfig.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN yarn install --frozen-lockfile --non-interactive
+RUN npm i -g pnpm
+RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the application code to the container
 COPY --chown=node:node . .
 
 # Build the Next.js app
-RUN yarn build
+RUN pnpm build
 
 # Production image
 FROM node:23-alpine3.20 AS runner
@@ -21,10 +22,12 @@ FROM node:23-alpine3.20 AS runner
 WORKDIR /app
 
 # Copy only the necessary build files from the builder stage
-COPY --from=builder /app/package.json /app/yarn.lock ./
+COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
+
+RUN npm i -g pnpm
+RUN pnpm install --frozen-lockfile --production
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -38,5 +41,4 @@ ENV NODE_ENV production
 EXPOSE 3000
 
 # Start the application
-CMD ["yarn", "start"]
-
+CMD ["pnpm", "start"]

@@ -1,44 +1,47 @@
 {
   "name": "next-v15-template",
-  "version": "1.0.1",
-  "description": "Next.js v15 template with Material-UI.",
+  "version": "1.0.2",
+  "description": "Next.js v15 template with Material-UI, docker, and Tailwind CSS",
   "author": "Nishant Kohli",
   "private": true,
   "scripts": {
+    "set-up": "sh setup.sh",
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "prod": "yarn build && yarn start",
+    "prod": "pnpm build && pnpm start",
     "lint": "next lint --fix",
     "lint:check": "next lint",
-    "prepare": "husky"
+    "prepare": "husky || true",
+    "check-updates": "ncu --format group -u",
+    "install-updates": "pnpm check-updates && pnpm install"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^7.0.1",
-    "@mui/material": "^7.0.1",
-    "@mui/material-nextjs": "^7.0.0",
-    "next": "15.2.4",
+    "@mui/icons-material": "^7.0.2",
+    "@mui/material": "^7.0.2",
+    "@mui/material-nextjs": "^7.0.2",
+    "next": "15.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
     "@nish1896/eslint-flat-config": "^2.0.2",
-    "@tailwindcss/postcss": "^4.0.17",
-    "@types/node": "^22.13.14",
-    "@types/react": "^19.0.12",
-    "@types/react-dom": "^19.0.4",
-    "eslint": "^9.23.0",
-    "eslint-config-next": "15.2.4",
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "eslint": "^9.25.0",
+    "eslint-config-next": "15.3.1",
     "husky": "^9.1.7",
-    "lint-staged": "^15.5.0",
+    "lint-staged": "^15.5.1",
     "postcss": "^8.5.3",
-    "prettier": "^3.4.2",
-    "tailwindcss": "^4.0.17",
-    "typescript": "^5.8.2"
+    "prettier": "^3.5.3",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3"
   },
   "lint-staged": {
     "*.{json,html,css,sass,scss}": [
@@ -47,5 +50,14 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint --fix"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.8.1",
+  "keywords": [
+    "nextjs",
+    "template",
+    "material-ui",
+    "tailwindcss",
+    "docker"
+  ],
+  "license": "MIT"
 }
