@@ -30,7 +30,7 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  console.log ('ejroie' );
+  console.log ('ejroie hei' );
   return (
     <html lang="en">
       <body
