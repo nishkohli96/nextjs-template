@@ -5,6 +5,7 @@ compose.yml
 
 # folders
 node_modules
+.git
 .github
 .husky
 .next

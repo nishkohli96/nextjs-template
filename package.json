@@ -12,7 +12,7 @@
     "prod": "pnpm build && pnpm start",
     "lint": "next lint --fix",
     "lint:check": "next lint",
-    "prepare": "husky",
+    "prepare": "husky || true",
     "check-updates": "ncu --format group -u",
     "install-updates": "pnpm check-updates && pnpm install"
   },
