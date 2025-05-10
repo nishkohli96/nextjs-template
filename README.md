@@ -36,8 +36,6 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) is an excellent tool for detecting the latest versions of dependencies and updating them in your `package.json`. It simplifies the process of keeping your project up to date with the latest package versions.
 
-### Installation
-
 The `setup.sh` script globally installs **npm-check-updates**.
 
 To update packages while also understanding the impact of the changes, run:
