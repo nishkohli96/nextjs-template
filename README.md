@@ -8,6 +8,8 @@ This is a [Next.js](https://nextjs.org) **v15** project bootstrapped with [`crea
 - [Tailwind CSS](https://tailwindcss.com/) **v4**
 - Containerize the application using Docker
 
+**If you're setting up a backend repository, you can use my [node-express-ts-template](https://github.com/nishkohli96/node-express-ts-template) template as a starting point.**
+
 ## Getting Started
 
 ```bash
