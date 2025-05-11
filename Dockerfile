@@ -6,7 +6,7 @@ WORKDIR /app
 COPY --chown=node:node package.json tsconfig.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN npm i -g pnpm
+RUN npm i -g pnpm@10.10.0
 RUN pnpm install --frozen-lockfile
 
 # Copy the rest of the application code to the container
@@ -26,7 +26,7 @@ COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 
-RUN npm i -g pnpm
+RUN npm i -g pnpm@10.10.0
 RUN pnpm install --frozen-lockfile --production
 
 # Next.js collects completely anonymous telemetry data about general usage.

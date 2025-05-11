@@ -1,10 +1,10 @@
-# Next App
+# Next.js App
 
 This is a [Next.js](https://nextjs.org) **v15** project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app) and has the following features preconfigured:
 
 - [Typescript](https://www.typescriptlang.org/) integration
 - Preconfigured [eslint](https://eslint.org/)
-- [Material-UI](https://mui.com/) setup with switching between light and dark mode.
+- [Material-UI](https://mui.com/) **v7** setup with switching between light and dark mode.
 - [Tailwind CSS](https://tailwindcss.com/) **v4**
 - Containerize the application using Docker
 
