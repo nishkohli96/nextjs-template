@@ -1,6 +1,6 @@
 {
   "name": "next-v15-template",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Next.js v15 template with Material-UI, docker, and Tailwind CSS",
   "author": "Nishant Kohli",
   "private": true,
