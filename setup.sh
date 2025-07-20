@@ -9,7 +9,7 @@ echo "🔍 Checking for global dependencies..."
 # Check for pnpm
 if ! command -v pnpm &> /dev/null; then
   echo "📦 pnpm not found. Installing..."
-  npm install -g pnpm@10.10.0
+  npm install -g pnpm@10.13.1
 else
   echo "✅ pnpm is already installed."
 fi
