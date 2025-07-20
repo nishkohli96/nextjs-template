@@ -9,8 +9,6 @@ logs
 .turbo
 .next
 .vercel
-.storybook
-out/
 storybook-static/
 
 # production

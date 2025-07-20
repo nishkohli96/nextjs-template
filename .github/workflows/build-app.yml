@@ -23,8 +23,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install pnpm v10.10.0 globally
-        run: npm i -g pnpm@10.10.0
+      - name: Install pnpm v10.13.1 globally
+        run: npm i -g pnpm@10.13.1
 
       - name: Install dependencies
         run: pnpm install
