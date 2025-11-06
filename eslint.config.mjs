@@ -18,7 +18,9 @@ const eslintConfig = [
   ...nextConfig,
   ...nextTsConfig,
   {
-    rules: {}
+    rules: {
+      '@typescript-eslint/triple-slash-reference': 'off',
+    }
   }
 ];
 
