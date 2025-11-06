@@ -1,7 +1,8 @@
 import type { NextConfig } from 'next';
 
+/* Configure Next.js app */
 const nextConfig: NextConfig = {
-  /* Configure Next.js app */
+  outputFileTracingRoot: __dirname,
   images: {
     remotePatterns: [
       {

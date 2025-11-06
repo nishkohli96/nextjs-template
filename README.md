@@ -13,7 +13,7 @@ This is a [Next.js](https://nextjs.org) **v15** project bootstrapped with [`crea
 ## Getting Started
 
 ```bash
-pnpm set-up
+sh setup.sh
 ```
 
 The above command executes the `setup.sh` script to set up the project by:
