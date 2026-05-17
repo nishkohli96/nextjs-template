@@ -1,59 +1,86 @@
 #!/bin/bash
 
-REQUIRED_PNPM_VERSION="10.33.0"
-
-# Exit immediately if any command fails (i.e., returns a non-zero exit code).
 set -e
 
-echo '🏁 Initiating Setup...'
-echo "🔍 Checking for global dependencies..."
+REQUIRED_NODE_VERSION="24.14.0"
+REQUIRED_PNPM_VERSION="10.33.0"
 
-# Ensure nvm is loaded
+echo "🏁 Initiating setup..."
+
+# -----------------------------
+# Load NVM
+# -----------------------------
 export NVM_DIR="$HOME/.nvm"
+
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   . "$NVM_DIR/nvm.sh"
 else
-  echo "❌ nvm is not installed. Please install nvm first."
+  echo "❌ nvm is not installed."
   exit 1
 fi
 
-# Use Node version from .nvmrc
+# -----------------------------
+# Setup Node version
+# -----------------------------
 if [ -f ".nvmrc" ]; then
   echo "🔧 Using Node version from .nvmrc..."
   nvm install
   nvm use
 else
-  echo "⚠️ .nvmrc not found. Skipping Node version setup."
+  echo "⚠️ .nvmrc not found. Using Node $REQUIRED_NODE_VERSION..."
+  nvm install $REQUIRED_NODE_VERSION
+  nvm use $REQUIRED_NODE_VERSION
 fi
 
-# Check if pnpm is installed and the version
-if command -v pnpm &> /dev/null; then
-  CURRENT_PNPM_VERSION=$(pnpm -v)
-  if [ "$(printf '%s\n' "$REQUIRED_PNPM_VERSION" "$CURRENT_PNPM_VERSION" | sort -V | head -n1)" != "$REQUIRED_PNPM_VERSION" ]; then
-    echo "⚠️ pnpm version $CURRENT_PNPM_VERSION is older than $REQUIRED_PNPM_VERSION. Upgrading..."
-    npm install -g pnpm@$REQUIRED_PNPM_VERSION
-  else
-    echo "✅ pnpm v$CURRENT_PNPM_VERSION is installed."
-  fi
-else
-  echo "📦 pnpm not found. Installing v$REQUIRED_PNPM_VERSION..."
-  npm install -g pnpm@$REQUIRED_PNPM_VERSION
-fi
+echo "✅ Node version: $(node -v)"
 
-# Check for npm-check-updates
-if ! command -v npm-check-updates &> /dev/null; then
-  echo "📦 npm-check-updates not found. Installing..."
+# -----------------------------
+# Install pnpm
+# -----------------------------
+echo "📦 Installing pnpm@$REQUIRED_PNPM_VERSION..."
+
+npm uninstall -g pnpm >/dev/null 2>&1 || true
+npm install -g pnpm@$REQUIRED_PNPM_VERSION
+
+echo "✅ pnpm version: $(pnpm -v)"
+
+# -----------------------------
+# Install npm-check-updates
+# -----------------------------
+if ! command -v ncu >/dev/null 2>&1; then
+  echo "📦 Installing npm-check-updates..."
   npm install -g npm-check-updates
 else
-  echo "✅ npm-check-updates is already installed."
+  echo "✅ npm-check-updates already installed."
 fi
 
-echo "📁 Installing project dependencies..."
+# -----------------------------
+# Clean old dependencies
+# -----------------------------
+echo "🧹 Removing old dependencies..."
+
+rm -rf node_modules
+rm -rf .next
+rm -f pnpm-lock.yaml
+
+# -----------------------------
+# Install dependencies
+# -----------------------------
+echo "📁 Installing dependencies..."
+
 pnpm install
 
-echo "🛠️  Building the app!"
+# -----------------------------
+# Build app
+# -----------------------------
+echo "🛠️ Building app..."
+
 pnpm build
 
+# -----------------------------
+# Done
+# -----------------------------
+echo ""
 echo "✅ Setup complete!"
-echo "🚀 You can now run the app using: \"pnpm dev\""
-echo "📖 For more information, check the README.md file."
+echo "🚀 Start development server:"
+echo "   pnpm dev"
