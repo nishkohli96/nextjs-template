@@ -61,7 +61,6 @@ echo "🧹 Removing old dependencies..."
 
 rm -rf node_modules
 rm -rf .next
-rm -f pnpm-lock.yaml
 
 # -----------------------------
 # Install dependencies
