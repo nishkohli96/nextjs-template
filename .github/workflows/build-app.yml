@@ -1,6 +1,8 @@
 name: build-app
 
-on: [push]
+on:
+  push:
+  pull_request:
 
 env:
   HUSKY: 0
@@ -9,25 +11,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [24.14.0]
-        os: [ubuntu-latest]
-
     steps:
-      - name: Git Checkout
+      - name: 📥 Checkout repository
         uses: actions/checkout@v6
 
-      - name: Setup Node env
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24.14.0
+          cache: "pnpm"
 
-      - name: Install pnpm v10.33.0 globally
-        run: npm i -g pnpm@10.33.0
+      - name: 📦 Install pnpm
+        run: npm install -g pnpm@10.33.0
 
-      - name: Install dependencies
-        run: pnpm install
+      - name: 📁 Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Build nextjs-app
+      - name: 🛠️ Build application
         run: pnpm build
