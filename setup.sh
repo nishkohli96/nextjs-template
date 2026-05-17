@@ -1,33 +1,85 @@
 #!/bin/bash
 
-# Exit immediately if any command fails (i.e., returns a non-zero exit code).
 set -e
 
-echo '🏁 Initiating Setup...'
-echo "🔍 Checking for global dependencies..."
+REQUIRED_NODE_VERSION="24.14.0"
+REQUIRED_PNPM_VERSION="10.33.0"
 
-# Check for pnpm
-if ! command -v pnpm &> /dev/null; then
-  echo "📦 pnpm not found. Installing..."
-  npm install -g pnpm@10.20.0
+echo "🏁 Initiating setup..."
+
+# -----------------------------
+# Load NVM
+# -----------------------------
+export NVM_DIR="$HOME/.nvm"
+
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+  . "$NVM_DIR/nvm.sh"
 else
-  echo "✅ pnpm is already installed."
+  echo "❌ nvm is not installed."
+  exit 1
 fi
 
-# Check for npm-check-updates
-if ! command -v npm-check-updates &> /dev/null; then
-  echo "📦 npm-check-updates not found. Installing..."
+# -----------------------------
+# Setup Node version
+# -----------------------------
+if [ -f ".nvmrc" ]; then
+  echo "🔧 Using Node version from .nvmrc..."
+  nvm install
+  nvm use
+else
+  echo "⚠️ .nvmrc not found. Using Node $REQUIRED_NODE_VERSION..."
+  nvm install $REQUIRED_NODE_VERSION
+  nvm use $REQUIRED_NODE_VERSION
+fi
+
+echo "✅ Node version: $(node -v)"
+
+# -----------------------------
+# Install pnpm
+# -----------------------------
+echo "📦 Installing pnpm@$REQUIRED_PNPM_VERSION..."
+
+npm uninstall -g pnpm >/dev/null 2>&1 || true
+npm install -g pnpm@$REQUIRED_PNPM_VERSION
+
+echo "✅ pnpm version: $(pnpm -v)"
+
+# -----------------------------
+# Install npm-check-updates
+# -----------------------------
+if ! command -v ncu >/dev/null 2>&1; then
+  echo "📦 Installing npm-check-updates..."
   npm install -g npm-check-updates
 else
-  echo "✅ npm-check-updates is already installed."
+  echo "✅ npm-check-updates already installed."
 fi
 
-echo "📁 Installing project dependencies..."
+# -----------------------------
+# Clean old dependencies
+# -----------------------------
+echo "🧹 Removing old dependencies..."
+
+rm -rf node_modules
+rm -rf .next
+
+# -----------------------------
+# Install dependencies
+# -----------------------------
+echo "📁 Installing dependencies..."
+
 pnpm install
 
-echo "🛠️  Building the app!"
+# -----------------------------
+# Build app
+# -----------------------------
+echo "🛠️ Building app..."
+
 pnpm build
 
+# -----------------------------
+# Done
+# -----------------------------
+echo ""
 echo "✅ Setup complete!"
-echo "🚀 You can now run the app using: \"pnpm dev\""
-echo "📖 For more information, check the README.md file."
+echo "🚀 Start development server:"
+echo "   pnpm dev"
