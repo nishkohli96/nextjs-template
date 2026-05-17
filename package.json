@@ -1,6 +1,6 @@
 {
   "name": "nextjs-template",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "author": "Nishant Kohli",
   "description": "Next.js v16 template with Material-UI, docker, and Tailwind CSS",
   "private": true,
