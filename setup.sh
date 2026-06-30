@@ -3,7 +3,7 @@
 set -e
 
 REQUIRED_NODE_VERSION="24.14.0"
-REQUIRED_PNPM_VERSION="10.33.0"
+REQUIRED_PNPM_VERSION="11.9.0"
 
 echo "🏁 Initiating setup..."
 
@@ -67,7 +67,7 @@ rm -rf .next
 # -----------------------------
 echo "📁 Installing dependencies..."
 
-pnpm install
+pnpm install --frozen-lockfile
 
 # -----------------------------
 # Build app
@@ -79,7 +79,5 @@ pnpm build
 # -----------------------------
 # Done
 # -----------------------------
-echo ""
 echo "✅ Setup complete!"
-echo "🚀 Start development server:"
-echo "   pnpm dev"
+echo "🚀 Start development server: pnpm dev"
