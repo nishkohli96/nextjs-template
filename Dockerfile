@@ -1,4 +1,11 @@
-FROM node:23-alpine3.20 AS builder
+# ==========================
+# Build constants
+# ==========================
+ARG NODE_VERSION=24
+ARG ALPINE_VERSION=3.23
+ARG PNPM_VERSION=11.9.0
+
+FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} AS builder
 
 # Set working directory in the container
 WORKDIR /app
@@ -6,7 +13,7 @@ WORKDIR /app
 COPY --chown=node:node package.json tsconfig.json pnpm-lock.yaml ./
 
 # Install dependencies
-RUN npm i -g pnpm@10.13.1
+RUN npm i -g pnpm@${PNPM_VERSION}
 
 RUN pnpm install --frozen-lockfile
 
@@ -17,7 +24,7 @@ COPY --chown=node:node . .
 RUN pnpm build
 
 # Production image
-FROM node:23-alpine3.20 AS runner
+FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION} AS runner
 
 # Set working directory in the container
 WORKDIR /app
@@ -27,7 +34,7 @@ COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 
-RUN npm i -g pnpm@10.13.1
+RUN npm i -g pnpm@${PNPM_VERSION}
 RUN pnpm install --frozen-lockfile --production
 
 # Next.js collects completely anonymous telemetry data about general usage.

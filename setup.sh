@@ -79,6 +79,5 @@ pnpm build
 # -----------------------------
 # Done
 # -----------------------------
-echo ""
 echo "✅ Setup complete!"
 echo "🚀 Start development server: pnpm dev"
