@@ -3,7 +3,7 @@
 set -e
 
 REQUIRED_NODE_VERSION="24.14.0"
-REQUIRED_PNPM_VERSION="11.9.0"
+REQUIRED_PNPM_VERSION="11.20.0"
 
 echo "🏁 Initiating setup..."
 
@@ -38,9 +38,9 @@ echo "✅ Node version: $(node -v)"
 # Install pnpm
 # -----------------------------
 echo "📦 Installing pnpm@$REQUIRED_PNPM_VERSION..."
-
-npm uninstall -g pnpm >/dev/null 2>&1 || true
-npm install -g pnpm@$REQUIRED_PNPM_VERSION
+if [ "$(pnpm -v 2>/dev/null)" != "$REQUIRED_PNPM_VERSION" ]; then
+  npm install -g pnpm@$REQUIRED_PNPM_VERSION
+fi
 
 echo "✅ pnpm version: $(pnpm -v)"
 
